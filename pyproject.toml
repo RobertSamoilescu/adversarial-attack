@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "adversarial-attack"
+version = "0.1.0"
+description = ""
+authors = ["RobertSamoilescu <robert.samoilescu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = "^2.5.1"
+numpy = "^2.1.3"
+torchvision = "^0.20.1"
+matplotlib = "^3.9.2"
+tqdm = "^4.67.1"
+pydantic = "^2.10.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+mypy = "^1.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 79
+exclude = '''
+(
+  \.egg-info
+  | \.mypy_cache
+  | \.git
+  | \.tox
+)
+'''
+
+[tool.mypy]
+ignore_missing_imports = true
+plugins = "pydantic.mypy"
+exclude = [
+  '\.egg-info',
+  '\.mypy_cache',
+  '\.git',
+  '\.tox',
+]

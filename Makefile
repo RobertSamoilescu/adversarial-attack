@@ -4,6 +4,9 @@ install:
 install-dev:
 	poetry install
 
+test:
+	poetry run pytest tests
+
 fmt:
 	poetry run black adversarial_attack
 	poetry run black tests

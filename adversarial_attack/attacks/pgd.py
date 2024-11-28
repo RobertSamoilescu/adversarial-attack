@@ -108,6 +108,10 @@ class ProjectedGradientDescent:
             adv_image = adv_image.detach().requires_grad_()
             output = self.model(adv_image)
 
+            if torch.argmax(output[0]).item() == target_class:
+                success = True
+                break
+
             # compute the gradient of the target class
             loss = output[0, target_class]
             loss.backward()
@@ -129,13 +133,6 @@ class ProjectedGradientDescent:
 
             # reset the gradients
             self.model.zero_grad()
-
-            # test if the image is now classified as the
-            # target class
-            output = self.model(adv_image)
-            if torch.argmax(output[0]).item() == target_class:
-                success = True
-                break
 
         if not success:
             logger.info(
